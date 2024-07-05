@@ -10,6 +10,11 @@ jobs:
   
     steps:
 
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          debug: true  
+
       - name: Checkout Repository
         uses: actions/checkout@v4 
 
