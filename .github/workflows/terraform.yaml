@@ -1,12 +1,33 @@
 name: terraform example
 
-on: push
+on: 
+  - push 
+  - workflow_dispatch
 
 jobs:
   build:
     runs-on: ubuntu-latest
   
     steps:
-          
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4 
+
       - name: Verify if we have the TFE_API_TOKEN
-        run: echo "This is the TFE_API_TOKEN:" ${{ secrets.TFE_API_TOKEN }}
+        run: | 
+          echo "This is the TFE_API_TOKEN:" ${{ secrets.TFE_API_TOKEN }}
+          echo "This is the TFE_HOST:" ${{ vars.TFE_HOST }}
+  
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          cli_config_credentials_hostname: ${{ vars.TFE_HOST }}
+          cli_config_credentials_token: ${{ secrets.TFE_API_TOKEN }}   
+          terraform_wrapper: false
+          terraform_version: "1.4.7"
+
+      - run: terraform init
+        name: terraform init
+
+      - run: terraform plan
+        name: terraform plan
+
