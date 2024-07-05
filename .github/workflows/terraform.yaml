@@ -1,0 +1,12 @@
+name: terraform example
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+  
+    steps:
+          
+      - name: Verify if we have the TFE_API_TOKEN
+        run: echo "This is the TFE_API_TOKEN:" ${{ secrets.TFE_API_TOKEN }}
