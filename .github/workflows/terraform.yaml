@@ -22,7 +22,7 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
         with:
         #   cli_config_credentials_hostname: ${{ vars.TFE_HOST }}
-          cli_config_credentials_hostname: tfe66.aws.munnep.com
+          cli_config_credentials_hostname: tfe665.aws.munnep.com
           cli_config_credentials_token: ${{ secrets.TFE_API_TOKEN }}   
           terraform_wrapper: false
           terraform_version: 1.4.7
